@@ -12,7 +12,9 @@ jobs:
     
     steps:
     - name: Show branch info
-      run: echo "Running on branch: ${{ github.ref_name }}"
+      run: |
+        echo "Running on branch: ${GITHUB_REF}"
+        echo "Running on branch: ${GITHUB_REF_NAME}"
 
     - name: Checkout repository
       uses: actions/checkout@v4
