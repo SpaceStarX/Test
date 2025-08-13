@@ -1,4 +1,4 @@
-name: CI (${{ github.ref_name }} branch)
+name: CI - ${{ github.ref_name }}
 
 on:
   push:
