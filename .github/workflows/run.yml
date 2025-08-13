@@ -1,4 +1,4 @@
-name: "CI ${GITHUB_REF}"
+name: "CI "
 
 on:
   push:
