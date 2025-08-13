@@ -6,21 +6,36 @@ on:
     branches: [ main, develop ]
   workflow_dispatch:
 
+env:
+  DAY_OF_WEEK: Monday
 
 jobs:
   sync:
     runs-on: ubuntu-latest
+    env:
+      Greeting: Hello
     
     steps:
     - name: Show branch info
+      env:
+        First_Name: Mona
       run: |
+        echo "============================================================================="
+        echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
         echo "Running on ref: ${GITHUB_REF}"
         echo "Running on ref_name: ${GITHUB_REF_NAME}"
         echo "Running on repository: ${GITHUB_REPOSITORY}"
+        echo "============================================================================="
         pwd
+        echo "============================================================================="
         ls -al
+        echo "============================================================================="
         id
+        echo "============================================================================="
         hostname
+        echo "============================================================================="
+        env
+        echo "============================================================================="
         cat /etc/os-release
 
     - name: Checkout repository
