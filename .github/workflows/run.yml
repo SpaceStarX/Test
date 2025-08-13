@@ -15,6 +15,9 @@ jobs:
       run: |
         echo "Running on branch: ${GITHUB_REF}"
         echo "Running on branch: ${GITHUB_REF_NAME}"
+        pwd
+        ls -al
+        id
 
     - name: Checkout repository
       uses: actions/checkout@v4
