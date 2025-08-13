@@ -1,8 +1,9 @@
-name: CI
+name: "CI "
 
 on:
   push:
-    
+  pull_request:
+    branches: [ main, develop ]
   workflow_dispatch:
 
 
@@ -13,11 +14,14 @@ jobs:
     steps:
     - name: Show branch info
       run: |
-        echo "Running on branch: ${GITHUB_REF}"
-        echo "Running on branch: ${GITHUB_REF_NAME}"
+        echo "Running on ref: ${GITHUB_REF}"
+        echo "Running on ref_name: ${GITHUB_REF_NAME}"
+        echo "Running on repository: ${GITHUB_REPOSITORY}"
         pwd
         ls -al
         id
+        hostname
+        cat /etc/os-release
 
     - name: Checkout repository
       uses: actions/checkout@v4
