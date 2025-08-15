@@ -59,7 +59,7 @@ jobs:
 
   next:
     runs-on: ubuntu-22.04
-    if: not ${{ github.event_name == 'pull_request' }}
+    if: ${{ github.event_name == 'pull_request' }}
     needs: sync
     steps:
     - name: Show branch info
