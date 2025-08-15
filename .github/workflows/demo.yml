@@ -30,7 +30,6 @@ jobs:
         echo "Running on ref_name: ${GITHUB_REF_NAME}"
         echo "Running on repository: ${GITHUB_REPOSITORY}"
         echo "Running on number: ${GITHUB_RUN_NUMBER}"
-        echo "Running on repository: ${{ github.repositoryUrl }}"
         echo "============================================================================="
         id
         hostname
@@ -60,13 +59,19 @@ jobs:
 
   next:
     runs-on: ubuntu-22.04
+    if: not ${{ github.event_name == 'pull_request' }}
+    needs: sync
     steps:
     - name: Show branch info
       run: |
         echo "============================================================================="
         echo "Running on ref: ${GITHUB_REF}"
+        echo "Running on ref: ${{ github.ref }}"
         echo "Running on ref_name: ${GITHUB_REF_NAME}"
-        echo "Running on repository: ${GITHUB_REPOSITORY}"
+        echo "Running on ref_name: ${{ github.ref_name }}"
+        echo "Running on repository: ${GITHUB_REPOSITORYURL}"
+        echo "Running on repository: ${{ github.repositoryUrl }}"
         echo "Running on number: ${GITHUB_RUN_NUMBER}"
+        echo "Running on number: ${{ github.run_number }}"
         echo "============================================================================="
         env
