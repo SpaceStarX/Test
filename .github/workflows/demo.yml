@@ -7,6 +7,7 @@ on:
       - develop
   pull_request:
     branches: [ main, develop ]
+    types: [opened, reopened, synchronize]
   workflow_dispatch:
 
 env:
@@ -48,17 +49,35 @@ jobs:
       run: |
         pwd
         ls -al
-        cat /etc/os-release
-        
+        mkdir -p temp
+        cd temp
+
+    - name: Check again
+      run: |
+        pwd
+        ls -al
+
   next:
     runs-on: ubuntu-22.04
+    if: ${{ github.event_name == 'pull_request' }}
+    needs: sync
     steps:
     - name: Show branch info
       run: |
         echo "============================================================================="
         echo "Running on ref: ${GITHUB_REF}"
+        echo "Running on ref: ${{ github.ref }}"
+        
         echo "Running on ref_name: ${GITHUB_REF_NAME}"
+        echo "Running on ref_name: ${{ github.ref_name }}"
+
         echo "Running on repository: ${GITHUB_REPOSITORY}"
+        echo "Running on repository: ${{ github.repository }}"
+
+        echo "Running on repositoryUrl: ${GITHUB_REPOSITORY_URL}"
+        echo "Running on repositoryUrl: ${{ github.repositoryUrl }}"
+
         echo "Running on number: ${GITHUB_RUN_NUMBER}"
+        echo "Running on number: ${{ github.run_number }}"
         echo "============================================================================="
         env
