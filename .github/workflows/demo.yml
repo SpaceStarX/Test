@@ -81,3 +81,14 @@ jobs:
         echo "Running on number: ${{ github.run_number }}"
         echo "============================================================================="
         env
+
+  feature:
+    runs-on: ubuntu-22.04
+    if: ${{ github.event_name != 'pull_request' }}
+    needs: sync
+    steps:
+    - name: Show branch info
+      run: |
+        echo "Running on number: ${GITHUB_RUN_NUMBER}"
+        echo "Running on number: ${{ github.run_number }}"
+        env
